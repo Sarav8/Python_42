@@ -16,17 +16,18 @@ class Plant:
         print(f"{name_c}: {self.height}cm, {self.days} days old")
 
 
-rose = Plant("rose", 25, 30)
-start = 1
-end = 7
-print("=== Day 1 ===")
-rose.get_info()
-while (start < end):
-    rose.grow()
-    rose.age()
-    start += 1
+if __name__ == "__main__":
+    rose = Plant("rose", 25, 30)
+    start = 1
+    end = 7
+    print("=== Day 1 ===")
+    rose.get_info()
+    while (start < end):
+        rose.grow()
+        rose.age()
+        start += 1
 
-print("=== Day 7 ===")
-rose.get_info()
-growth = rose.height - 25
-print(f"Growth this week +{growth}cm")
+    print("=== Day 7 ===")
+    rose.get_info()
+    growth = rose.height - 25
+    print(f"Growth this week +{growth}cm")
