@@ -13,7 +13,7 @@ class Flower(Plant):
  
     def bloom(self):
         name_c = self.name.capitalize()
-        print(f"{name_c} is blooming beautifully!")
+        print(f"{name_c} is blooming beautifully!\n")
 
     def get_info(self):
         name_c = self.name.capitalize()
@@ -30,7 +30,10 @@ class Tree(Plant):
 
     def produce_shade(self):
         name_c = self.name.capitalize()
-        print(f"{name_c} provides {self.height} square meters of shade")
+        height_m = self.height / 100
+        shade = int(3.14 * height_m ** 2)
+        print(f"{name_c} provides {shade} square meters of shade\n")
+
 
     def get_info(self):
         name_c = self.name.capitalize()
@@ -65,12 +68,10 @@ if __name__ == "__main__":
     oak2 = Tree("Oak2", 50, 25, 3)
     tomato1 = Vegetable("Tomato", 80, 90, "summer", "vitamin c")
     tomato2 = Vegetable("Tomato2", 100, 60, "winter", "vitamin c")
-    print("=== Garden Plant Types ===")
+    print("=== Garden Plant Types ===\n")
     flower1.get_info()
     flower1.bloom()
-    print("")
     oak1.get_info()
     oak1.produce_shade()
-    print("")
     tomato1.get_info()
     tomato1.nutritional_info()
