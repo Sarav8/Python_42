@@ -1,8 +1,22 @@
-
+"""
+A class to represent a plant.
+Attributes:
+name (str): Plant's name.
+height (int): Plant's height in centimeters.
+days (int): Plant's age in days.
+Methods:
+__init__(name, height, age): Initializes a new plant with the given name, height, and age.
+grow(): Increases height by 1 cm.
+age(): Increases age by 1 day.
+get_info(): Displays the plant's name, height, and age.
+"""
 class Plant:
     count = 0
 
     def __init__(self, name: str, starting_height: int, starting_age: int):
+        """
+        Initializes the plant with the specified name, height, and age.
+        """
         self.name = name
         self.height = starting_height
         self.age = starting_age
@@ -10,7 +24,7 @@ class Plant:
 
     def create(self):
         name_c = self.name.capitalize()
-        print(f"Create: {name_c} ({self.height}cm, {self.age}days)")
+        print(f"Create: {name_c} ({self.height}cm, {self.age} days)")
         
 
 if __name__ == "__main__":

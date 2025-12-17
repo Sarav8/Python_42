@@ -4,7 +4,7 @@ class Plant:
         self.name = name
         self._height = height
         self._age = age
-        print(f"Plant created: {self.name}")
+        print(f"Plant created: {self.name.capitalize()}")
 
     def set_height(self, new_height: int):
         if new_height < 0:
