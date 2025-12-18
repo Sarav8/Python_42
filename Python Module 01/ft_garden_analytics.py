@@ -1,10 +1,18 @@
+"""
+Garden Management System
+
+This program allows creating and managing plants and gardens.
+It tracks plant growth, garden contents, and calculates overall
+garden scores, providing reports on the state of each garden.
+"""
+
 
 class Plant:
     def __init__(self, name: str, height: int):
         self.name = name
         self.height = height
         self.type = "regular"
-    
+
     def info(self):
         print(f"- {self.name.capitalize()}: {self.height}cm")
 
@@ -15,19 +23,27 @@ class FloweringPlant(Plant):
         self.color = color
         self.blooming = blooming
         self.type = "flowering"
-    
+
     def info(self):
-        print(f"- {self.name.capitalize()}: {self.height}cm, {self.color} flowers (blooming)")
+        print(
+            f"- {self.name.capitalize()}: {self.height}cm, "
+            f"{self.color} flowers (blooming)"
+        )
 
 
 class PrizeFlower(FloweringPlant):
-    def __init__(self, name: str, height: int, color: str, blooming: bool, prize_points: int):
+    def __init__(self, name: str, height: int, color: str, blooming: bool,
+                 prize_points: int):
         super().__init__(name, height, color, blooming)
         self.prize_points = prize_points
         self.type = "prize"
 
     def info(self):
-        print(f"- {self.name.capitalize()}: {self.height}cm, {self.color} flowers (blooming), Prize points: {self.prize_points}\n")
+        print(
+            f"- {self.name.capitalize()}: {self.height}cm, "
+            f"{self.color} flowers (blooming),"
+            f" Prize points: {self.prize_points}\n"
+        )
 
 
 class Garden:
@@ -42,7 +58,7 @@ class Garden:
         self.plants_added += 1
         name_c = plant.name.capitalize()
         print(f"Added {name_c} to {self.owner}'s garden")
-    
+
     def grow_all_plants(self):
         print(f"{self.owner} is helping all plants grow...")
         for plant in self.plants:
@@ -51,14 +67,16 @@ class Garden:
             name_c = plant.name.capitalize()
             print(f"{name_c} grew 1cm")
 
-            
     def report(self):
         print(f"=== {self.owner}'s Garden Report ===")
         print("Plants in garden:")
         for plant in self.plants:
             plant.info()
-        print(f"Plants added: {self.plants_added}, Total growth: {self.total_growth}cm")
-        
+        print(
+            f"Plants added: {self.plants_added}, "
+            f"Total growth: {self.total_growth}cm"
+        )
+
     def plant_types(self):
         regular = 0
         flowering = 0
@@ -70,8 +88,11 @@ class Garden:
                 flowering += 1
             elif plant.type == "prize":
                 prize += 1
-        print(f"Plant types: {regular} regular, {flowering} flowering, {prize} prize flowers\n")
-    
+        print(
+            f"Plant types: {regular} regular, {flowering} flowering, "
+            f"{prize} prize flowers\n"
+        )
+
 
 class GardenManager:
     gardens_total = []
@@ -81,21 +102,24 @@ class GardenManager:
         result = self.GardenStats.validate_heights(garden.plants)
         print(f"Height validation test: {result}")
 
-    
     @classmethod
     def create_garden_network(cls):
-        total_scores = {}
+        print("Garden scores - ", end="")
+        count = 0
         for garden in cls.gardens_total:
+            count += 1
             score = 0
             for plant in garden.plants:
                 score += plant.height
                 if plant.type == "prize":
                     score += plant.prize_points
-            total_scores[garden.owner] = score
-        print("Garden scores - " + ", ".join(f"{owner.title()}: {score}" for owner, score in total_scores.items()))
-        print(f"Total gardens managed: {len(cls.gardens_total)}\n")
+            score += garden.total_growth * 10
 
-
+            if count > 1:
+                print(", ", end="")
+            print(garden.owner + ": " + str(score), end="")
+        print()
+        print("Total gardens managed:", count)
 
     class GardenStats:
         @staticmethod
@@ -104,6 +128,7 @@ class GardenManager:
                 if plant.height < 0:
                     return False
             return True
+
 
 if __name__ == "__main__":
     oak = Plant("oak tree", 100)
@@ -124,5 +149,3 @@ if __name__ == "__main__":
     bob_garden.plants.append(FloweringPlant("tulip", 2, "yellow", True))
     manager = GardenManager(bob_garden)
     GardenManager.create_garden_network()
-
-

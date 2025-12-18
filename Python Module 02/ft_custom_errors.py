@@ -1,4 +1,3 @@
-
 class GardenError(Exception):
     pass
 
@@ -40,6 +39,6 @@ if __name__ == "__main__":
         print(f"Caught GardenError: {e}")
     try:
         check_water(-9)
-    except GardenError as e:     
+    except GardenError as e:
         print(f"Caught GardenError: {e}\n")
     print("All custom error types work correctly!")

@@ -4,6 +4,7 @@ It uses classes and inheritance to show their behavior.
 """
 """super() allows child classes to reuse the parent class attributes."""
 
+
 class Plant:
     def __init__(self, name: str, height: int, age: int):
         self.name = name
@@ -15,7 +16,7 @@ class Flower(Plant):
     def __init__(self, name: str, height: int, age: int, color: str):
         super().__init__(name, height, age)
         self.color = color
- 
+
     def bloom(self):
         name_c = self.name.capitalize()
         print(f"{name_c} is blooming beautifully!\n")
@@ -25,7 +26,7 @@ class Flower(Plant):
         print(
             f"{name_c} (Flower): {self.height}cm, "
             f"{self.age} days, {self.color} color"
-            )
+        )
 
 
 class Tree(Plant):
@@ -39,17 +40,23 @@ class Tree(Plant):
         shade = int(3.14 * height_m ** 2)
         print(f"{name_c} provides {shade} square meters of shade\n")
 
-
     def get_info(self):
         name_c = self.name.capitalize()
         print(
             f"{name_c} (Tree): {self.height}cm, "
             f"{self.age} days, {self.trunk_diameter}cm diameter"
-            )
+        )
 
 
 class Vegetable(Plant):
-    def __init__(self, name: str, height: int, age: int, harvest_season: str, nutritional_value: str):
+    def __init__(
+        self,
+        name: str,
+        height: int,
+        age: int,
+        harvest_season: str,
+        nutritional_value: str,
+    ):
         super().__init__(name, height, age)
         self.harvest_season = harvest_season
         self.nutritional_value = nutritional_value
@@ -57,13 +64,13 @@ class Vegetable(Plant):
     def nutritional_info(self):
         name_c = self.name.capitalize()
         print(f"{name_c} is rich in {self.nutritional_value}")
-        
+
     def get_info(self):
         name_c = self.name.capitalize()
         print(
             f"{name_c} (Vegetable): {self.height}cm, "
             f"{self.age} days, {self.harvest_season} harvest"
-            )
+        )
 
 
 if __name__ == "__main__":
@@ -73,7 +80,9 @@ if __name__ == "__main__":
     oak2 = Tree("Oak2", 50, 25, 3)
     tomato1 = Vegetable("Tomato", 80, 90, "summer", "vitamin c")
     tomato2 = Vegetable("Tomato2", 100, 60, "winter", "vitamin c")
+
     print("=== Garden Plant Types ===\n")
+
     flower1.get_info()
     flower1.bloom()
     oak1.get_info()

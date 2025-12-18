@@ -1,12 +1,16 @@
 """
 A class to represent a plant.
+
 Attributes:
-name (str): Plant's name.
-height (int): Plant's height in cm.
-days (int): Plant's age in days.
+    name (str): Plant's name.
+    height (int): Plant's height in cm.
+    days (int): Plant's age in days.
+
 Methods:
-grow(), age(), get_info().
+    grow(), age(), get_info().
 """
+
+
 class Plant:
     def __init__(self, name: str, height: int, age: int):
         self.name = name
@@ -31,14 +35,17 @@ if __name__ == "__main__":
     rose = Plant("rose", 25, 30)
     start = 1
     end = 7
+
     print("=== Day 1 ===")
     rose.get_info()
-    while (start < end):
+
+    while start < end:
         rose.grow()
         rose.age()
         start += 1
 
     print("=== Day 7 ===")
     rose.get_info()
+
     growth = rose.height - 25
     print(f"Growth this week: +{growth}cm")
