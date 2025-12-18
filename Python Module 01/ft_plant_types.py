@@ -1,3 +1,8 @@
+"""
+This program defines different plant types in a garden.
+It uses classes and inheritance to show their behavior.
+"""
+"""super() allows child classes to reuse the parent class attributes."""
 
 class Plant:
     def __init__(self, name: str, height: int, age: int):

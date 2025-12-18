@@ -1,10 +1,20 @@
+"""
+A secure plant class that protects its data (height, age) and allows controlled access.
 
+Methods:
+set_height(new_height) - Updates height if valid, rejects negatives.
+set_age(new_age) - Updates age if valid, rejects negatives.
+get_height() - Returns current height.
+get_age() - Returns current age.
+get_info() - Prints plant information.
+"""
 class Plant:
     def __init__(self, name: str, height: int, age: int):
         self.name = name
         self._height = height
         self._age = age
         print(f"Plant created: {self.name.capitalize()}")
+        
 
     def set_height(self, new_height: int):
         if new_height < 0:
