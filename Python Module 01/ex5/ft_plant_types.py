@@ -78,8 +78,8 @@ if __name__ == "__main__":
     flower2 = Flower("rose2", 78, 38, "blue")
     oak1 = Tree("Oak", 500, 1825, 50)
     oak2 = Tree("Oak2", 50, 25, 3)
-    tomato1 = Vegetable("Tomato", 80, 90, "summer", "vitamin c")
-    tomato2 = Vegetable("Tomato2", 100, 60, "winter", "vitamin c")
+    tomato1 = Vegetable("Tomato", 80, 90, "summer", "vitamin C")
+    tomato2 = Vegetable("Tomato2", 100, 60, "winter", "vitamin C")
 
     print("=== Garden Plant Types ===\n")
 

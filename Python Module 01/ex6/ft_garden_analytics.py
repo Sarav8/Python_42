@@ -99,11 +99,11 @@ class GardenManager:
 
     def __init__(self, garden):
         self.gardens_total.append(garden)
-        result = self.GardenStats.validate_heights(garden.plants)
-        print(f"Height validation test: {result}")
 
     @classmethod
     def create_garden_network(cls):
+        result = cls.GardenStats.validate_heights(cls.gardens_total[0].plants)
+        print(f"Height validation test: {result}")
         print("Garden scores - ", end="")
         count = 0
         for garden in cls.gardens_total:
@@ -114,7 +114,6 @@ class GardenManager:
                 if plant.type == "prize":
                     score += plant.prize_points
             score += garden.total_growth * 10
-
             if count > 1:
                 print(", ", end="")
             print(garden.owner + ": " + str(score), end="")
@@ -139,10 +138,11 @@ if __name__ == "__main__":
     alice_garden.add_plants(oak)
     alice_garden.add_plants(rose)
     alice_garden.add_plants(sunflower)
+    print("")
     alice_garden.grow_all_plants()
+    print("")
     alice_garden.report()
     alice_garden.plant_types()
-    GardenManager.GardenStats.validate_heights(alice_garden.plants)
     manager = GardenManager(alice_garden)
     bob_garden = Garden("Bob")
     bob_garden.plants.append(Plant("pine tree", 90))
