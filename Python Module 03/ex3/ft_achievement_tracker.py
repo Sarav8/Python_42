@@ -29,8 +29,5 @@ def ft_achievement_tracker():
     print(f"Alice unique: {unique_ali}")
     print(f"Bob unique: {unique_bob}")
 
-
-
-
 if __name__ == "__main__":
     ft_achievement_tracker()
