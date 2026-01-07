@@ -1,11 +1,14 @@
 import sys
 
+
 def ft_score_analytics():
     print("=== Player Score Analytics ===")
     total = len(sys.argv)
     if total < 2:
-        print(f"No scores provided. Usage: " 
-        f"python3 {sys.argv[0]} <score1> <score2> ...")
+        print(
+            f"No scores provided. Usage: "
+            f"python3 {sys.argv[0]} <score1> <score2> ..."
+        )
     else:
         num_list = []
         i = 1
@@ -25,5 +28,6 @@ def ft_score_analytics():
         print(f"Low score: {min(num_list)}")
         print(f"Score range: {max(num_list) - min(num_list)}")
 
-if __name__== "__main__":
+
+if __name__ == "__main__":
     ft_score_analytics()

@@ -1,5 +1,6 @@
 import sys
 
+
 def ft_command_quest():
     print("=== Command Quest ===")
     total = len(sys.argv)
@@ -15,6 +16,6 @@ def ft_command_quest():
         i += 1
     print(f"Total arguments: {total}")
 
+
 if __name__ == "__main__":
     ft_command_quest()
-
