@@ -364,7 +364,7 @@ def process_event():
 event_stream = process_event()
 
 print("=== Game Data Stream Processor ===\n")
-print("Processing 1000 game events..\n")
+print("Processing 50 game events..\n")
 
 total_events_processed = 0
 high_level_players = 0
