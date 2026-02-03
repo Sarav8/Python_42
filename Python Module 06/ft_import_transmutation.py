@@ -1,9 +1,6 @@
 import alchemy.elements
-from alchemy.elements import (
-    create_fire,
-    create_water,
-    create_earth,
-)
+from alchemy.elements import create_fire
+from alchemy.elements import create_water, create_earth
 from alchemy.potions import healing_potion as heal, strength_potion
 
 

@@ -13,11 +13,12 @@ class CreatureCard(Card):
         
 
     def play(self, game_state: dict) -> dict:
-        return {
+        info_creature = {
             'card_played': self.name,
             'mana_used': self.cost,
             'effect': 'Creature summoned to battlefield'
         }
+        return info_creature
 
     def get_card_info(self):
         info_card = super().get_card_info()
