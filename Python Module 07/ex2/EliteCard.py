@@ -4,18 +4,20 @@ from ex2.Magical import Magical
 
 
 class EliteCard(Card, Magical, Combatable):
-    def __init__(self, name, cost, rarity, health, attack, mana):
-        super().__init__(name, cost, rarity)
-        Combatable.__init__(self)
-        Magical.__init__(self)
-        self.damage = attack
-        self.combat_type = 'melee'
+    """A powerful card that combines combat and magic abilities."""
+
+    def __init__(self, name: str, cost: int, rarity: str,
+                 health: int, attack: int, mana: int):
+        """Initialize EliteCard with all required attributes."""
+        Card.__init__(self, name, cost, rarity)
         self.health = health
-        self.damage_blocked = 3
+        self.damage = attack
         self.mana = mana
-        
+        self.combat_type = 'melee'
+        self.damage_blocked = 3
 
     def attack(self, target) -> dict:
+        """Implement attack from Combatable interface."""
         return {
             'attacker': self.name,
             'target': target,
@@ -24,65 +26,50 @@ class EliteCard(Card, Magical, Combatable):
         }
 
     def defend(self, incoming_damage: int) -> dict:
-        damage_taken = incoming_damage - self.damage_blocked
-        if damage_taken < 0:
-            damage_taken = 0
+        """Implement defense from Combatable interface."""
+        damage_taken = max(0, incoming_damage - self.damage_blocked)
         self.health -= damage_taken
-        still_alive = self.health > 0
         return {
-                'defender': self.name,
-                'damage_taken': 2,
-                'damage_blocked': self.damage_blocked,
-                'still_alive': still_alive
-            }
+            'defender': self.name,
+            'damage_taken': damage_taken,
+            'damage_blocked': self.damage_blocked,
+            'still_alive': self.health > 0
+        }
 
     def get_combat_stats(self) -> dict:
-        return {
-            'health': self.health,
-            'damage': self.damage,
-            'combat_type': self.combat_type
-        }
-    
+        """Return combat statistics."""
+        return {'health': self.health, 'damage': self.damage}
+
     def cast_spell(self, spell_name: str, targets: list) -> dict:
+        """Implement spell casting from Magical interface."""
         return {
             'caster': self.name,
             'spell': spell_name,
             'targets': targets,
             'mana_used': self.mana
-            }
+        }
 
     def channel_mana(self, amount: int) -> dict:
-        self.mana += amount        
-        return {                   
-            'channeled': amount,
-            'total_mana': self.mana
+        """Implement mana channeling."""
+        self.mana += amount
+        return {'channeled': amount, 'total_mana': self.mana}
+
+    def get_magic_stats(self) -> dict:
+        """Return magic statistics."""
+        return {'total_mana': self.mana}
+
+    def play(self, game_state: dict) -> dict:
+        """Execute a full turn action for the elite card."""
+        return {
+            'combat': self.attack("Enemy"),
+            'magic': self.cast_spell("Fireball", ["Enemy1"])
         }
 
-    def get_magic_stats(self) -> dict:    
-        return {                   
-            'total_mana': self.mana
-        }
-
-    def play(self) -> dict:
-        def play(self) -> dict:
-            combat_result = self.attack("Enemy")
-            defense_result = self.defend(5) 
-            magic_result = self.cast_spell("Fireball", ["Enemy1", "Enemy2"])
-            mana_result = self.channel_mana(3)
-            return {
-                'combat': combat_result,
-                'defense': defense_result,
-                'magic': magic_result,
-                'mana': mana_result
-            }
-
-    def get_capabilities(self) -> dict:
-        capabilities = {
-            'Card': ['play', 'get_card_info', 'is_playable'],
-            'Combatable': ['attack', 'defend', 'get_combat_stats'],
-            'Magical': ['cast_spell', 'channel_mana', 'get_magic_stats']
-        }
-        capabilities_str = "EliteCard capabilities:\n"
-        for interface, methods in capabilities.items():
-            capabilities_str += f"- {interface}: {methods}\n"
-        return capabilities_str
+    def get_capabilities(self) -> str:
+        """Return a string listing all card capabilities."""
+        return (
+            "EliteCard capabilities:\n"
+            "- Card: ['play', 'get_card_info', 'is_playable']\n"
+            "- Combatable: ['attack', 'defend', 'get_combat_stats']\n"
+            "- Magical: ['cast_spell', 'channel_mana', 'get_magic_stats']"
+        )
