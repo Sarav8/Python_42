@@ -4,10 +4,7 @@ import site
 
 
 def check_matrix_status():
-    """
-    Detects if the script is running inside a virtual environment
-    and displays relevant information about the Python environment.
-    """
+    """Detects if the script is running inside a virtual environment."""
     try:
         in_venv = sys.prefix != sys.base_prefix
 
