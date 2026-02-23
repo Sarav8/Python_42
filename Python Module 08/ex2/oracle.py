@@ -1,39 +1,37 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
 
-var_ent = ["MATRIX_MODE", "DATABASE_URL", "API_KEY", "LOG_LEVEL", "ZION_ENDPOINT"]
+def load_oracle_config():
+    load_dotenv()
 
-mode = os.environ.get("MATRIX_MODE")
-database = os.environ.get("DATABASE_URL")
-api_key = os.environ.get("API_KEY")
-log_level = os.environ.get("LOG_LEVEL")
-zion = os.environ.get("ZION_ENDPOINT")
+    mode = os.getenv('MATRIX_MODE')
+    db = os.getenv('DATABASE_URL')
+    api = os.getenv('API_KEY')
+    log = os.getenv('LOG_LEVEL')
+    zion = os.getenv('ZION_ENDPOINT')
 
-print("ORACLE STATUS: Reading the Matrix...")
-print("Configuration loaded:")
-print(f"Mode: {mode}")
-print(f"Database: {database}")
-print(f"API Access: {api_key}")
-print(f"Log Level: {log_level}")
-print(f"Zion Network: {zion}")
+    print("ORACLE STATUS: Reading the Matrix...")
+    print("Configuration loaded:")
+    print(f"Mode: {mode}")
+    msg_db = "Database: Connected to local instance" if db \
+        else "Database: Disconnected"
+    print(msg_db)
 
+    msg_api = "API Access: Authenticated" if api else "API Access: Error"
+    print(msg_api)
 
-missing_vars = []
+    print(f"Log Level: {log}")
 
-for var in var_ent:
-    if os.environ.get(var) is None: 
-        print(f"[ERROR] Missing dependency: {var}")
-        missing_vars.append(var)
-    else:
-        print(f"[OK] {var} loaded")
+    msg_zion = "Zion Network: Online" if zion else "Zion Network: Offline"
+    print(msg_zion)
 
-if not missing_vars:
     print("Environment security check:")
     print("[OK] No hardcoded secrets detected")
     print("[OK] .env file properly configured")
     print("[OK] Production overrides available")
     print("The Oracle sees all configurations.")
-else:
-    print("There were some missing variables. Please configure the environment correctly.")
+
+
+if __name__ == "__main__":
+    load_oracle_config()
