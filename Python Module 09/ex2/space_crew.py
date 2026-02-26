@@ -84,7 +84,7 @@ def main():
             mission_name="Mars Colony Establishment",
             destination="Mars",
             launch_date=datetime(2024, 6, 15, 10, 0, 0),
-            duration_days=90,
+            duration_days=900,
             budget_millions=2500.0,
             crew=[
                 Crew_member(
@@ -121,10 +121,17 @@ def main():
         print("=" * 40)
         print(f"Mission: {mission1.mission_name}")
         print(f"ID: {mission1.mission_id}")
+        print(f"Destination: {mission1.destination}")
+        print(f"Duration: {mission1.duration_days}")
+        print(f"Budget: ${mission1.budget_millions}M")
         print(f"Crew size: {len(mission1.crew)}")
         print("Crew members:")
         for member in mission1.crew:
-            print(f"   - {member.name} ({member.rank.value})")
+            print(
+                f"   - {member.name} "
+                f"({member.rank.value}) "
+                f"- {member.specialization}"
+            )
         print("=" * 40 + "\n")
     except ValidationError as e:
         print(f"Error: {e}")
